@@ -5,4 +5,5 @@ sqlparse==0.4.2
 
 # Django
 # ----------------------------------------------------------------------------
-Django==4.0.4
+Django==4.0.4  # https://pypi.org/project/Django/4.0.4/
+djangorestframework==3.13.1  # https://pypi.org/project/djangorestframework/3.13.1/
