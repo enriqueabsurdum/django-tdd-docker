@@ -17,7 +17,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PARTY_APPS = []
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'apps.users.apps.UsersConfig',
+]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # Middleware
@@ -89,3 +91,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # ----------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Auth user model
+# ----------------------------------------------------------------------------
+AUTH_USER_MODEL = 'users.CustomUser'
