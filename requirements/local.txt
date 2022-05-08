@@ -1,1 +1,9 @@
 -r base.txt
+
+# Django utils
+# ----------------------------------------------------------------------------
+pytest-django==4.5.2  # https://pypi.org/project/pytest-django/4.5.2/
+
+# Utils
+# ----------------------------------------------------------------------------
+pytest==7.1.2  # https://pypi.org/project/pytest/7.1.2/
