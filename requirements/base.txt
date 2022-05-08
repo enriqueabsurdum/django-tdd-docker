@@ -7,3 +7,7 @@ sqlparse==0.4.2
 # ----------------------------------------------------------------------------
 Django==4.0.4  # https://pypi.org/project/Django/4.0.4/
 djangorestframework==3.13.1  # https://pypi.org/project/djangorestframework/3.13.1/
+
+# PostgreSQL
+# ----------------------------------------------------------------------------
+psycopg2-binary==2.9.3  # https://pypi.org/project/psycopg2-binary/2.9.3/

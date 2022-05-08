@@ -14,3 +14,12 @@ GET, POST, PUT y DELETE.
 | /api/movies     | POST        | CREATE      | add a movie        |
 | /api/movies/:id | PUT         | UPDATE      | update a movie     |
 | /api/movies/:id | DELETE      | DELETE      | delete a movie     |
+
+## Comandos docker
+
+Construye, (re)crea, inicia contenedores. El flag `-f` indica el archivo docker-compose que se utilizará y `--build`
+crea imágenes antes de iniciar contenedores.
+
+```
+docker-compose -f docker-compose.yml up --build
+```
