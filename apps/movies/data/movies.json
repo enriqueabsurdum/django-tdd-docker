@@ -1,0 +1,32 @@
+[
+  {
+    "model": "movies.movie",
+    "fields": {
+      "title": "Fargo",
+      "genre": "Comedy",
+      "year": "1996",
+      "created": "2022-01-01T00:00:00.001Z",
+      "modified": "2022-01-01T00:00:00.001Z"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "fields": {
+      "title": "No Country for Old Men",
+      "genre": "Thriller",
+      "year": "2007",
+      "created": "2022-01-01T00:00:00.001Z",
+      "modified": "2022-01-01T00:00:00.001Z"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "fields": {
+      "title": "A Serious Man",
+      "genre": "Comedy",
+      "year": "2009",
+      "created": "2022-01-01T00:00:00.001Z",
+      "modified": "2022-01-01T00:00:00.001Z"
+    }
+  }
+]

@@ -11,6 +11,7 @@ class MovieSerializer(serializers.ModelSerializer):
     """Movie serializer model class."""
 
     class Meta:
+        """Meta options."""
         model = Movie
         fields = '__all__'
         read_only_fields = ('pk_id', 'id', 'created', 'modified')
