@@ -2,6 +2,7 @@
 
 # Django
 from django.http import Http404
+
 # Django REST framework
 from rest_framework import status
 from rest_framework.response import Response
@@ -9,6 +10,7 @@ from rest_framework.views import APIView
 
 # Models
 from apps.movies.models import Movie
+
 # Serializers
 from apps.movies.serializers import MovieSerializer
 
@@ -43,6 +45,14 @@ class MovieDetail(APIView):
         movie = self.get_object(uuid)
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
+
+    def put(self, request, uuid, format=None):
+        movie = self.get_object(uuid)
+        serializer = MovieSerializer(movie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, uuid, format=None):
         movie = self.get_object(uuid)

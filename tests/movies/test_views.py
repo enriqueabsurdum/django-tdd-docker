@@ -18,7 +18,7 @@ def test_add_movie(client):
         path="/api/movies/",
         data={
             "title": "The Big Lebowski",
-            "genre": "Comedy",
+            "genre": "comedy",
             "year": "1998",
         },
         content_type="application/json",
@@ -37,7 +37,7 @@ def test_get_single_movie(client, add_movie):
 
     movie = add_movie(
         title="The Big Lebowski",
-        genre="Comedy",
+        genre="comedy",
         year="1998",
     )
 
@@ -48,15 +48,19 @@ def test_get_single_movie(client, add_movie):
 
 
 def test_get_single_movie_incorrect_id(client):
+    """Test get single movie incorrect id."""
+
     resp = client.get("/api/movies/foo/")
     assert resp.status_code == 404
 
 
 @pytest.mark.django_db
 def test_get_all_movies(client, add_movie):
+    """Test get all movies."""
+
     movie_one = add_movie(
         title="The Big Lebowski",
-        genre="Comedy",
+        genre="comedy",
         year="1998",
     )
     movie_two = add_movie(
@@ -73,9 +77,11 @@ def test_get_all_movies(client, add_movie):
 
 @pytest.mark.django_db
 def test_remove_movie(client, add_movie):
+    """Test remove movies."""
+
     movie = add_movie(
         title="The Big Lebowski",
-        genre="Comedy",
+        genre="comedy",
         year="1998",
     )
 
@@ -93,5 +99,82 @@ def test_remove_movie(client, add_movie):
 
 @pytest.mark.django_db
 def test_remove_movie_incorrect_id(client):
+    """Test remove movie incorrect id."""
+
     resp = client.delete(path="/api/movies/99/")
     assert resp.status_code == 404
+
+
+@pytest.mark.django_db
+def test_update_movie(client, add_movie):
+    """Test update movie."""
+
+    movie = add_movie(
+        title="The Big Lebowski",
+        genre="comedy",
+        year="1998",
+    )
+
+    resp = client.put(
+        f"/api/movies/{movie.id}/",
+        {
+            "title": "The Big Lebowski",
+            "genre": "comedy",
+            "year": "1997",
+        },
+        content_type="application/json",
+    )
+    assert resp.status_code == 200
+    assert resp.data["title"] == "The Big Lebowski"
+    assert resp.data["year"] == "1997"
+
+    resp_two = client.get(f"/api/movies/{movie.id}/")
+    assert resp_two.status_code == 200
+    assert resp_two.data["title"] == "The Big Lebowski"
+    assert resp.data["year"] == "1997"
+
+
+@pytest.mark.django_db
+def test_update_movie_incorrect_id(client):
+    """Test update movie incorrect id."""
+
+    resp = client.put("/api/movies/99/")
+    assert resp.status_code == 404
+
+
+@pytest.mark.django_db
+def test_update_movie_invalid_json(client, add_movie):
+    """Test updated movie invalid json."""
+
+    movie = add_movie(
+        title="The Big Lebowski",
+        genre="comedy",
+        year="1998",
+    )
+    resp = client.put(
+        f"/api/movies/{movie.id}/",
+        {},
+        content_type="application/json",
+    )
+    assert resp.status_code == 400
+
+
+@pytest.mark.django_db
+def test_update_movie_invalid_json_keys(client, add_movie):
+    """Test update movie invalid json keys."""
+
+    movie = add_movie(
+        title="The Big Lebowski",
+        genre="comedy",
+        year="1998",
+    )
+
+    resp = client.put(
+        f"/api/movies/{movie.id}/",
+        {
+            "title": "The Big Lebowski",
+            "genre": "comedy",
+        },
+        content_type="application/json",
+    )
+    assert resp.status_code == 400
