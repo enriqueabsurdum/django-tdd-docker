@@ -2,17 +2,15 @@
 
 # Django
 from django.http import Http404
-
 # Django REST framework
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-# Serializers
-from apps.movies.serializers import MovieSerializer
-
 # Models
 from apps.movies.models import Movie
+# Serializers
+from apps.movies.serializers import MovieSerializer
 
 
 class MovieList(APIView):
@@ -38,7 +36,7 @@ class MovieDetail(APIView):
     def get_object(self, uuid):
         try:
             return Movie.objects.get(id=uuid)
-        except Movie.DoesNotExist as dne:
+        except Movie.DoesNotExist:
             raise Http404
 
     def get(self, request, uuid, format=None):

@@ -7,7 +7,7 @@ import pytest
 from apps.movies.models import Movie
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def add_movie():
     """Add movie."""
 
@@ -15,7 +15,7 @@ def add_movie():
         movie = Movie.objects.create(
             title=title,
             genre=genre,
-            year=year
+            year=year,
         )
         return movie
 

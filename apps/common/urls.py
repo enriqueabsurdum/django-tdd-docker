@@ -7,5 +7,5 @@ from django.urls import path
 from apps.common.views import ping_pong
 
 urlpatterns = [
-    path('', ping_pong, name='ping'),
+    path("", ping_pong, name="ping"),
 ]

@@ -11,6 +11,6 @@ from apps.movies.models import Movie
 class MovieAdmin(admin.ModelAdmin):
     """Movie admin model class."""
 
-    fields = ('title', 'genre', 'year', 'created', 'modified')
-    list_display = ('title', 'genre', 'year')
-    readonly_fields = ('created', 'modified')
+    fields = ("title", "genre", "year", "created", "modified")
+    list_display = ("title", "genre", "year")
+    readonly_fields = ("created", "modified")
