@@ -8,6 +8,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+# Third party libraries
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+
 # Models
 from apps.movies.models import Movie
 
@@ -23,6 +27,16 @@ class MovieList(APIView):
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                "title": openapi.Schema(type=openapi.TYPE_STRING),
+                "genre": openapi.Schema(type=openapi.TYPE_STRING),
+                "year": openapi.Schema(type=openapi.TYPE_STRING),
+            },
+        )
+    )
     def post(self, request, format=None):
         serializer = MovieSerializer(data=request.data)
 
@@ -46,6 +60,16 @@ class MovieDetail(APIView):
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                "title": openapi.Schema(type=openapi.TYPE_STRING),
+                "genre": openapi.Schema(type=openapi.TYPE_STRING),
+                "year": openapi.Schema(type=openapi.TYPE_STRING),
+            },
+        )
+    )
     def put(self, request, uuid, format=None):
         movie = self.get_object(uuid)
         serializer = MovieSerializer(movie, data=request.data)

@@ -98,3 +98,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Auth user model
 # ----------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.CustomUser"
+
+# Django REST framework
+# ----------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.renderers.JSONRenderer",
+}

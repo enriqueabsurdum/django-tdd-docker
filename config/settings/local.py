@@ -14,7 +14,9 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split()
 
 # Application definition
 # ----------------------------------------------------------------------------
-INSTALLED_APPS += []  # noqa
+INSTALLED_APPS += [
+    "drf_yasg",
+]
 
 # Middleware
 # ----------------------------------------------------------------------------
@@ -31,4 +33,16 @@ DATABASES = {
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
+}
+
+# Swagger
+# ----------------------------------------------------------------------------
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
+
+# Django REST framework
+# ----------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
